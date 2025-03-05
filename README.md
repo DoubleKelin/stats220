@@ -9,4 +9,4 @@ A little about me:
 - I am interested in learning about programming languauges.
 
 A meme that captures how I currently feel about my university studies is 
-[![](https://c.tenor.com/8druEACXtX8AAAAd/tenor.gif)](https://tenor.com/zh-CN/view/don’t-make-me-beg-gif-12130911910626192031)
+ ![](https://media1.tenor.com/m/8O7yHWjYVUMAAAAd/hungry-starving.gif)
