@@ -1,0 +1,82 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE, fig.width = 10, fig.height = 6)
+
+```
+
+```{css}
+p {
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+h2 {
+  color:#ED254E;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  padding: 30px;
+  background-color: #fdfdfd;
+}
+
+```
+
+## Coffee Drinking Habits of University Students
+```{r}
+library(tidyverse)
+
+#Here is my csv
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQFhtTS3mmF-P5BVMnWuXrAbFk1w4Kl-jpnKAV4NMeL6GBf5NjmgGCHGnT_XH87KMKGPfoUxgAs6UOE/pub?gid=79483515&single=true&output=csv")
+
+#Now I wanna see the data frame
+glimpse(logged_data)
+
+#rename the variables
+latest_data <- logged_data %>%
+  rename(
+    cups_per_day = `On average, how many cups of coffee do you drink per day?`,
+    coffee_type = `What type of coffee do you drink most often?`,
+    coffee_source = `Where do you usually get your coffee from?`
+  )
+```
+
+
+1.  We begin by summarising the data with two key values: - the **average number of cups of coffee** students drink per day, and - the **total number of responses** we received in our survey.
+
+```{r}
+mean(latest_data$cups_per_day, na.rm = TRUE)
+nrow(latest_data)
+
+```
+
+*So The average number of cups of coffee students drink per day is `r round(mean(latest_data$cups_per_day, na.rm = TRUE), 1)`. A total of `r nrow(latest_data)` responses were collected.*
+
+2.  The first bar chart shows the **most common type of coffee** students reported that they drank. This tells us about the general coffee preferences of the group.
+
+```{r}
+ggplot(data = latest_data) +
+  geom_bar(aes(x = coffee_type),
+           fill = "#a3c4de") +
+  labs(title = "Most Common Coffee Type",
+   x = "Type of Coffee",
+    y = "Number of Responses"
+   )
+```
+
+3.  The second bar graph shows **where students generally get their coffee from**, such as chain coffeehouses, college coffeehouses, or those made at home. This tells us something about students' coffee-consumption patterns.
+
+```{r}
+ggplot(data = latest_data) + 
+  geom_bar(aes(x = coffee_source),
+           fill = "#c3cdc4") +
+  labs(title = "Where Students Get Their Coffee",
+       x = "Source",
+       y = "Number of Responses"
+  )
+```
