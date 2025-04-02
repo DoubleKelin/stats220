@@ -22,7 +22,7 @@ h2 {
 
 body {
   padding: 30px;
-  background-color: #fcf6bd;
+  background-color: #f5ebe0;
 }
 
 ```
